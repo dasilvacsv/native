@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { Button, Image, StyleSheet, Text, View } from 'react-native';
+import { Button, Image, Pressable, StyleSheet, Text, View } from 'react-native';
 const icon = require('./assets/icon.png')
 
 export default function App() {
@@ -9,7 +9,22 @@ export default function App() {
       <Text style={{color:'white'}}>Tenemos aquí la configuración</Text>
       <StatusBar style="light" />
       <Button title='Pulsa aqui' onPress={() => alert('Hola')}/>
-    </View>
+      <Pressable
+        onPress={() => {
+        }}
+        style={({pressed}) => [
+          {
+            backgroundColor: pressed ? 'rgb(210, 230, 255)' : 'white',
+          },
+          styles.wrapperCustom,
+        ]}>
+        {({pressed}) => (
+          <Text style={
+            {fontWeight: pressed ? 'bold' : 'italic'}
+          }>{pressed ? 'Pressed!' : 'Press Me'}</Text>
+        )}
+      </Pressable>
+  </View>
   );
 }
 
