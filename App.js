@@ -1,13 +1,14 @@
 import { StatusBar } from 'expo-status-bar';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Button, Image, StyleSheet, Text, View } from 'react-native';
 const icon = require('./assets/icon.png')
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Image source={icon} style={{width: 200, height: 100, resizeMode: 'contain'}} />
-      <Text>Tenemos aquí la configuración</Text>
-      <StatusBar style="auto" />
+      <Image source={{uri:"https://www.metacritic.com/a/img/resize/3bc917343b798369b95f16269ad0953da023f5f4/catalog/provider/6/12/6-1-1008938-52.jpg?auto=webp&fit=cover&height=300&width=200"}} style={{width: 215, height: 294}} />
+      <Text style={{color:'white'}}>Tenemos aquí la configuración</Text>
+      <StatusBar style="light" />
+      <Button title='Pulsa aqui' onPress={() => alert('Hola')}/>
     </View>
   );
 }
@@ -15,7 +16,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#09f',
+    backgroundColor: '#000',
     alignItems: 'center',
     justifyContent: 'center',
   },
