@@ -1,12 +1,14 @@
 import { Link } from 'expo-router'
 import React from 'react'
-import { ScrollView, Text } from 'react-native'
+import { Pressable, ScrollView, Text } from 'react-native'
 
 function About() {
   return (
 <ScrollView>
-<Link href="/" className="text-blue-400 mt-24 text-xl">
-        Ir al Inicio
+<Link asChild href="/" >
+        <Pressable>
+          <Text className="text-blue-400 text-xl mt-24">Volver al inicio</Text>
+        </Pressable>
         </Link>
     <Text className="text-white font-bold mb-8 text-2xl">About</Text>
     <Text className="text-white/90 mb-4">

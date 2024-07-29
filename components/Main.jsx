@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import {
   ActivityIndicator,
   FlatList,
+  Pressable,
   StyleSheet,
   Text,
   View,
@@ -23,8 +24,10 @@ export default function Main() {
 
   return (
     <View style={{ paddingTop: insets.top, paddingBottom: insets.bottom }}>
-        <Link href="/about" className="text-blue-400 text-xl">
-        Ir al about
+        <Link asChild href="/about" >
+        <Pressable>
+          <Text className="text-blue-400 text-xl">Ir al about</Text>
+        </Pressable>
         </Link>
         {games.length == 0 ? (
           <ActivityIndicator size={'large'}/>
