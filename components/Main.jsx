@@ -29,9 +29,10 @@ export default function Main() {
         <FlatList
         data={games}
         keyExtractor={(game) => game.slug}
-        renderItem={({item}) => <AnimatedGameCard game={item}/> }
+        renderItem={({item, index}) => 
+        <AnimatedGameCard game={item} index={index}/> }
         />
         )}
-    </View>
+    </View> 
   );
 }
