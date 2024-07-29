@@ -1,33 +1,31 @@
 import { StatusBar } from "expo-status-bar";
-import { Button, Image, Pressable, StyleSheet, Text, View } from "react-native";
+import { useEffect, useState } from "react";
+import { Image, StyleSheet, Text, View } from "react-native";
+import { getLatestGames} from './lib/metacritic'
 
 export default function App() {
+const [games, setGames] = useState([])
+
+useEffect(() => {
+getLatestGames().then((games) => {
+  setGames(games)
+})
+}, [])
+
   return (
     <View style={styles.container}>
-      <Image
-        source={{
-          uri: "https://www.metacritic.com/a/img/resize/3bc917343b798369b95f16269ad0953da023f5f4/catalog/provider/6/12/6-1-1008938-52.jpg?auto=webp&fit=cover&height=300&width=200",
-        }}
-        style={{ width: 215, height: 294 }}
-      />
-      <Text style={{ color: "white" }}>Tenemos aquí la configuración</Text>
       <StatusBar style="light" />
-      <Button title="Pulsa aqui" onPress={() => alert("Hola")} />
-      <Pressable
-        onPress={() => {}}
-        style={({ pressed }) => [
-          {
-            backgroundColor: pressed ? "rgb(210, 230, 255)" : "white",
-          },
-          styles.wrapperCustom,
-        ]}
-      >
-        {({ pressed }) => (
-          <Text style={{ fontWeight: pressed ? "bold" : "italic" }}>
-            {pressed ? "Pressed!" : "Press Me"}
-          </Text>
-        )}
-      </Pressable>
+      {games.map(game => (
+        <View key={game.slug} style={styles.card}>
+            <Image source={{uri: game.image}} style={styles.image}/>
+              <Text style={styles.title}>{game.title}</Text>
+              <Text style={styles.description}>{game.description}</Text>
+              <Text style={styles.score}>{game.score}</Text>
+
+
+          </View>
+
+      ))}
     </View>
   );
 }
@@ -39,4 +37,28 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  card: {
+    marginBottom: 10
+  },
+  image: {
+    width: 107,
+    height: 147,
+    borderRadius: 10
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 10,
+    color: '#fff'
+  },
+  description: {
+    fontSize: 16,
+    color: '#fff'
+  },
+  score: {
+    fontWeight: 'bold',
+    fontSize: 16,
+    color: "green",
+    marginTop: 10
+  }
 });
